@@ -6,28 +6,7 @@
     <groupId>by.alex.web</groupId>
     <artifactId>site</artifactId>
     <version>1.0</version>
-    <packaging>${packaging.type}</packaging>
-    <profiles>
-        <profile>
-            <id>jar</id>
-            <properties>
-                <packaging.type>jar</packaging.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>war</id>
-            <properties>
-                <packaging.type>war</packaging.type>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                    <scope>provided</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+    <packaging>jar</packaging>
 
     <name>site</name>
     <description>Site project for Spring Boot</description>
