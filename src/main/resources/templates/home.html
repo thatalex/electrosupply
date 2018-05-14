@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Store</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body class="bg-warning">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container mw-100 h-100">
+    <div class="row equal h-100 align-items-center">
+        <div class="col">
+            <img th:src="@{/images/home.image}" class="rounded mx-auto d-block"/>
+            <h1 class="text-center text-white" th:text="#{home.discounts.header}"></h1>
+            <p class="text-center" th:text="#{home.discounts.message}"></p>
+        </div>
+        <div class="col">
+            <br/>
+            <h1 class="text-center" th:text="#{home.header}"></h1>
+            <br/>
+            <p class="text-center" th:text="#{home.message}"></p>
+            <br/>
+            <h2 class="text-center" th:text="#{home.phone}"></h2>
+            <br/>
+            <form th:object="${request}" th:action="@{/home}" method="post" class="form-horizontal"
+                  role="form">
+                <p>Отправить заявку:</p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Имя</span>
+                    </div>
+                    <input type="text" th:field="*{username}" class="form-control" placeholder=""/>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Эл. почта</span>
+                    </div>
+                    <input type="text" th:field="*{email}" class="form-control" placeholder="name@mail.com"/>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Телефон</span>
+                    </div>
+                    <input type="text" th:field="*{phone}" class="form-control" placeholder="+375 (29) 111-22-33"/>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Сообщение</span>
+                    </div>
+                    <textarea th:field="*{message}" class="form-control" rows="5"></textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="submit" class="btn btn-primary btn-block" value="Отправить"/>
+                </div>
+            </form>
+            <p th:if="${result}" th:text="${result}"></p>
+        </div>
+
+    </div>
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

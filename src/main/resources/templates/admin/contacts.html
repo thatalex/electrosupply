@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Store</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body class="bg-warning">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container mw-70 h-100">
+    <br/>
+    <h3 class="text-center">Контакты:</h3>
+    <br/>
+    <form th:object="${messages}" th:action="@{/admin/contacts}" method="post" class="form-horizontal"
+          role="form">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Телефон life</span>
+            </div>
+            <input type="text" th:field="*{life}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Телефон mts</span>
+            </div>
+            <input type="text" th:field="*{mts}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Телефон velcom</span>
+            </div>
+            <input type="text" th:field="*{velcom}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Эл. почта</span>
+            </div>
+            <input type="text" th:field="*{email}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">ИП</span>
+            </div>
+            <input type="text" th:field="*{boss}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">УНП</span>
+            </div>
+            <input type="text" th:field="*{unp}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <input type="submit" class="btn btn-primary btn-block" value="Сохранить"/>
+        </div>
+    </form>
+    <p th:if="${result}" th:text="${result}"></p>
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

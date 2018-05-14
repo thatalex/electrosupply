@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Store</title>
+    <div th:replace="fragments/header :: header-css"/>
+    <script th:inline="javascript" th:src="@{/js/scrolltop.js}"/>
+</head>
+<body class="bg-warning">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container mw-100 h-100">
+    <div class="row equal h-20 align-items-center">
+        <div class="col">
+            <br/>
+            <h2 class="text-center">Отзывы</h2>
+            <br/>
+        </div>
+    </div>
+    <div class="row h-80 align-items-top">
+        <div class="col">
+            <div th:each="review : ${reviews}">
+                <div class="card">
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p th:text="${review.message}"/>
+                            <footer class="blockquote-footer"><cite th:text="${review.username}"/></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
+        <div class="col">
+            <form th:object="${review}" th:action="@{/reviews}" method="post" class="form-horizontal"
+                  role="form">
+                <p>Оставить отзыв:</p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Имя</span>
+                    </div>
+                    <input type="text" th:field="*{username}" class="form-control" placeholder=""/>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Эл. почта</span>
+                    </div>
+                    <input type="text" th:field="*{email}" class="form-control" placeholder="name@mail.com"/>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Отзыв</span>
+                    </div>
+                    <textarea th:field="*{message}" class="form-control" rows="5"></textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="submit" class="btn btn-primary btn-block" value="Отправить"/>
+                </div>
+            </form>
+            <p th:if="${result}" th:text="${result}"></p>
+        </div>
+
+    </div>
+    <button id="up_btn" title="Up" role="button" class="btn btn-primary btn-sm fixed-bottom ml-auto mr-3 mb-3"
+            onclick="topFunction()" style="width: 32px; display: none" >
+        <i class="fa fa-chevron-up"/>
+    </button>
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

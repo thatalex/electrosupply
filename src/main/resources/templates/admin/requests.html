@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Store</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body class="bg-warning">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container mw-100 h-100">
+    <div class="row equal h-20 align-items-center">
+        <div class="col">
+            <br/>
+            <h2 class="text-center">Заявки</h2>
+        </div>
+    </div>
+    <form id="edit_element" action="#" th:action="@{/admin/requests}" method="post">
+        <div th:object="${request}" class="row h-40 align-items-center">
+
+            <input class="form-control" id="value_id" type="hidden" th:field="*{id}"/>
+            <div class="col-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Имя</span>
+                    </div>
+                    <input id="value_name" type="text" th:field="*{username}" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">E-mail</span>
+                    </div>
+                    <input id="value_email" type="text" th:field="*{email}" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Телефон</span>
+                    </div>
+                    <input id="value_phone" type="text" th:field="*{phone}" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Статус</span>
+                    </div>
+                    <select id="value_state" class="form-control" th:field="*{state}" name="size">
+                        <option th:each="enumItem : ${T(by.alex.web.site.model.State).values()}"
+                                th:value="${enumItem}" th:text="${enumItem.getName()}"/>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12">
+                <span class="input-group-text">Описание</span>
+                <textarea id="value_message" type="text" th:field="*{message}"
+                          class="form-control"
+                          placeholder="" rows="2"/>
+            </div>
+        </div>
+    </form>
+    <br/>
+    <div class="btn-toolbar justify-content-center">
+        <div class="btn-group mr-2" role="group">
+            <a href="#"
+               onclick="document.forms['edit_element'].action+='?action=save';document.forms['edit_element'].submit()"
+               class="btn btn-primary">Сохранить</a>
+        </div>
+        <div class="btn-group mr-2" role="group">
+            <a href="#"
+               onclick="onRowSelect(1,'',1);document.getElementById('value_id').value='';document.getElementById('value_name').value='';
+                document.getElementById('value_message').value='';document.getElementById('value_state').value='NEW';
+                document.getElementById('value_email').value='';document.getElementById('value_phone').value=''"
+               class="btn btn-primary">Очистить</a>
+        </div>
+        <div class="btn-group mr-2" role="group">
+            <a href="#"
+               onclick="document.forms['edit_element'].action+='?action=delete';document.forms['edit_element'].submit()"
+               class="btn btn-primary">Удалить</a>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <h4>Список заявок:</h4>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <td>Эл. почта</td>
+            <td>Телефон</td>
+            <td>Описание</td>
+            <td>Статус</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${requests.empty}">
+            <td colspan="4">Список пуст</td>
+        </tr>
+        <tr class="selectable_row" th:each="item, iter : ${requests}" th:id="${'row_' + iter.count}"
+            th:onclick="${'onRowSelect(1,''row_'+iter.count+ ''',1);' +
+            'document.getElementById(''value_name'').value=''' + item.username+''';' +
+            'document.getElementById(''value_email'').value=''' + item.email+''';' +
+            'document.getElementById(''value_phone'').value=''' + item.phone+''';' +
+            'document.getElementById(''value_id'').value=''' + item.id+''';' +
+            'document.getElementById(''value_message'').value=''' + item.message+''';' +
+            'document.getElementById(''value_state'').value=''' + item.state+''''}">
+            <td th:text="${item.email}">email</td>
+            <td th:text="${item.phone}">phone</td>
+            <td th:text="${item.message}">message</td>
+            <td th:text="${item.state.getName()}">state</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

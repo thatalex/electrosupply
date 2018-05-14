@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+<div th:fragment="navbar" th:remove="tag" sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <li class="nav-item">
+        <a class="nav-link text-warning" href="/admin/requests" th:href="@{/admin/requests}">
+            <span aria-hidden="true"/>&nbsp;Заявки
+        </a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-warning" data-toggle="dropdown" href="#" role="button"
+           aria-haspopup="true" aria-expanded="false">Редактирование</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" th:href="@{/admin/home}">Главная</a>
+            <a class="dropdown-item" href="#" th:href="@{/admin/contacts}">Контакты</a>
+            <a class="dropdown-item" href="#" th:href="@{/admin/services}">Услуги</a>
+        </div>
+    </li>
+</div>
+</body>
+</html>

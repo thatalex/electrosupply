@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Store</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body class="bg-warning">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container mw-100 h-100">
+    <div class="row equal h-20 align-items-center">
+        <div class="col">
+            <br/>
+            <h2 class="text-center">Услуги</h2>
+            <br/>
+        </div>
+    </div>
+    <div class="row equal h-80">
+        <div class="col-3" th:each="service : ${services}">
+            <div class="card text-center">
+                <div class="card-header">
+                    <p class="card-title" th:text="${service.name}"/>
+                </div>
+                <img th:src="@{'data:image/png;base64,' + ${service.getEncodedImage()}}"
+                     class="img-fluid mx-auto d-block"
+                     alt="image" style="height:30vh"/>
+                <div class="card-body">
+
+                    <h6 class="card-text" th:text="${service.description}"/>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text" th:text="${service.price}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

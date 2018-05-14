@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Store</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body class="bg-warning">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container mw-70 h-100">
+    <br/>
+    <h3 class="text-center">Главная:</h3>
+    <label for="file_import" class="btn btn-primary">Заменить изображение
+        <form method="post" enctype="multipart/form-data"
+              action="/admin/home_image" th:action="@{/admin/home_image}">
+            <input id="file_import" class="file_input" type="file" name="file" onchange="form.submit()"/>
+        </form>
+    </label>
+    <form th:object="${messages}" th:action="@{/admin/home}" method="post" class="form-horizontal"
+          role="form">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Заголовок</span>
+            </div>
+            <input type="text" th:field="*{header}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Сообщение</span>
+            </div>
+            <textarea th:field="*{message}" class="form-control" rows="7"></textarea>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Телефон</span>
+            </div>
+            <input type="text" th:field="*{phone}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Заголовок акции</span>
+            </div>
+            <input type="text" th:field="*{discountsHeader}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Сообщение акции</span>
+            </div>
+            <textarea th:field="*{discountsMessage}" class="form-control" rows="7"></textarea>
+        </div>
+        <div class="input-group mb-3">
+            <input type="submit" class="btn btn-primary btn-block" value="Сохранить"/>
+        </div>
+    </form>
+    <p th:if="${result}" th:text="${result}"></p>
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
