@@ -27,6 +27,7 @@
         <hibernate.version>5.1.0.Final</hibernate.version>
     </properties>
 
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -137,6 +138,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.3.7</version>
+                <configuration>
+                    <repository>thatalex/esupply</repository>
+                    <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+                    <buildArgs>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                        <APP_FILE>config/application.properties</APP_FILE>
+                        <MSG_FILE>config/messages.properties</MSG_FILE>
+                        <DB_FILE>config/sitedb.mv.db</DB_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
