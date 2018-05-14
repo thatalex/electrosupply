@@ -21,6 +21,12 @@
           role="form">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
+                <span class="input-group-text">Название</span>
+            </div>
+            <input type="text" th:field="*{brand}" class="form-control" placeholder=""/>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
                 <span class="input-group-text">Заголовок</span>
             </div>
             <input type="text" th:field="*{header}" class="form-control" placeholder=""/>

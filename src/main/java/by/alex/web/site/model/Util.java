@@ -38,7 +38,7 @@ public enum Util {
     private Properties createProperties() {
         Properties properties = new Properties();
         try (InputStream inputStream = new FileInputStream(MESSAGES_FILE);
-             Reader reader = new InputStreamReader(inputStream, Charset.forName("cp1251"))) {
+             Reader reader = new InputStreamReader(inputStream, Charset.forName("utf-8"))) {
             properties.load(reader);
         } catch (IOException e) {
         }
@@ -64,7 +64,7 @@ public enum Util {
 
     public void storeProperties() {
         try (OutputStream outputStream = new FileOutputStream(MESSAGES_FILE);
-             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("cp1251"))) {
+             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8"))) {
             properties.store(writer, "");
             messageSource.clearCache();
         } catch (IOException e) {

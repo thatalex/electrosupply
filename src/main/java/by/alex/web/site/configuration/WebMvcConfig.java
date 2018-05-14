@@ -34,7 +34,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
-        messageSource.setDefaultEncoding("cp1251");
+        messageSource.setDefaultEncoding("utf-8");
 		return messageSource;
 	}
 

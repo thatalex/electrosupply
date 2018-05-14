@@ -3,6 +3,7 @@ package by.alex.web.site.model;
 import java.util.Properties;
 
 public class HomeMessages implements Messages {
+    private String brand = "";
     private String header = "";
     private String message = "";
     private String phone = "";
@@ -11,6 +12,14 @@ public class HomeMessages implements Messages {
 
     public HomeMessages() {
 
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getHeader() {
@@ -55,6 +64,7 @@ public class HomeMessages implements Messages {
 
     @Override
     public void read(Properties properties) {
+        brand = properties.getProperty("brand", "");
         header = properties.getProperty("home.header", "");
         message = properties.getProperty("home.message", "");
         phone = properties.getProperty("home.phone", "");
@@ -63,6 +73,7 @@ public class HomeMessages implements Messages {
     }
 
     public void write(Properties properties) {
+        properties.setProperty("brand", brand);
         properties.setProperty("home.header", header);
         properties.setProperty("home.message", message);
         properties.setProperty("home.phone", phone);
