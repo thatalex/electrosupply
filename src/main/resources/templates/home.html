@@ -11,7 +11,8 @@
 <div class="container mw-100 h-100">
     <div class="row equal h-100 align-items-center">
         <div class="col">
-            <img th:src="@{/images/home.image}" class="rounded mx-auto d-block"/>
+            <img th:src="@{'data:image/png;base64,' + ${main_image}}"
+                 class="rounded mx-auto d-block" alt="image"/>
             <h1 class="text-center text-white" th:text="#{home.discounts.header}"></h1>
             <p class="text-center" th:text="#{home.discounts.message}"></p>
         </div>

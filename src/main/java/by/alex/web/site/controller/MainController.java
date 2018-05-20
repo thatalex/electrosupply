@@ -2,7 +2,7 @@ package by.alex.web.site.controller;
 
 import by.alex.web.site.model.Request;
 import by.alex.web.site.model.Review;
-import by.alex.web.site.model.Service;
+import by.alex.web.site.model.Util;
 import by.alex.web.site.service.RequestService;
 import by.alex.web.site.service.ReviewService;
 import by.alex.web.site.service.ServiceService;
@@ -12,13 +12,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.util.Iterator;
-import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 
 @Controller
 public class MainController {
@@ -30,6 +32,8 @@ public class MainController {
 
     @Autowired
     private ServiceService serviceService;
+
+
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public ModelAndView getHome() {
@@ -52,7 +56,7 @@ public class MainController {
             }
         }
         modelAndView.clear();
-        modelAndView.setViewName("redirect:home");
+        modelAndView.setViewName("redirect:/home");
         return modelAndView;
     }
 
@@ -132,6 +136,7 @@ public class MainController {
     private void addHeaderText(ModelAndView modelAndView) {
         modelAndView.addObject("request", new Request());
         modelAndView.addObject("home_image", "images/home.png");
+        modelAndView.addObject("main_image", Util.INSTANCE.getMainImage());
     }
 
 }

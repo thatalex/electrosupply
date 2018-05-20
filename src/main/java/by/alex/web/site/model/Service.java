@@ -51,7 +51,7 @@ public class Service {
         this.image = image;
     }
 
-    public String getEncodedImage(){
+    public String   getEncodedImage(){
         return image != null ? Base64.getEncoder().encodeToString(image) : "";
     }
 

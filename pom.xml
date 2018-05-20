@@ -150,6 +150,7 @@
                         <APP_FILE>config/application.properties</APP_FILE>
                         <MSG_FILE>config/messages.properties</MSG_FILE>
                         <DB_FILE>config/sitedb.mv.db</DB_FILE>
+						<IMAGE_FILE>config/home.image</IMAGE_FILE>
                     </buildArgs>
                 </configuration>
             </plugin>
